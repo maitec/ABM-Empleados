@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "ABM-Empleados",
+      "public": "dist/ABM-Empleados",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './components/shared/angular-material/angular-material.module';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 //Components
 import { AppComponent } from './app.component';
@@ -24,8 +27,11 @@ import { ConfirmationMessageComponent } from './components/shared/confirmation-m
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
+  entryComponents: [ConfirmationMessageComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

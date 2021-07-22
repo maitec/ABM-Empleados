@@ -1,3 +1,20 @@
 table {
     width: 100%;
 }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.edit {
+    color: #1878B0;
+}
+
+.delete {
+    color: #E15639
+}

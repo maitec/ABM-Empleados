@@ -1,0 +1,11 @@
+h1 {
+    text-align: center;
+}
+
+.mat-dialog-content {
+    text-align: center;
+}
+
+.mat-dialog-actions {
+    justify-content: center;
+}

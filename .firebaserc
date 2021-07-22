@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "abm-employee": {
+      "hosting": {
+        "ABM-Empleados": [
+          "abm-employee"
+        ]
+      }
+    }
+  }
+}
