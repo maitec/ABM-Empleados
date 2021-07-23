@@ -1,3 +1,8 @@
+<div class="row">
+  <div class="column-lg-6 d-flex justify-content-end">
+    <button mat-raised-button color="primary" (click)="addEmployee()">Add</button>
+  </div>
+</div>
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter by..." autocomplete="off" #input>
@@ -54,4 +59,3 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   
-  <button (click)="add()">add</button>

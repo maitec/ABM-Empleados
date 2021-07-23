@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
+import { CustomSnackbarConfig } from 'src/app/models/CustomSnackbarConfig.model';
 import { Employee } from 'src/app/models/Employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ConfirmationMessageComponent } from '../shared/confirmation-message/confirmation-message.component';
@@ -15,10 +16,16 @@ export class ListEmployeeComponent implements OnInit {
   listEmployee: Employee[] = [];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
- shirtCollection: any
+  snackbarConfig: CustomSnackbarConfig = {
+    duration: 3000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  }
+
   constructor(
     private _employeeService: EmployeeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -50,27 +57,38 @@ export class ListEmployeeComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => {
-      console.log(error)
+      this.snackbar.open('An error occurred', '', {
+        panelClass: ['error'],
+        ...this.snackbarConfig
+      });
     });
   }
 
   public deleteEmployee(idEmployee: string) {
     const dialogRef = this.dialog.open(ConfirmationMessageComponent, {
       width: '350px',
-      data: {message: 'Do you want to delete this employee?'}
+      data: { message: 'Do you want to delete this employee?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this._employeeService.deleteEmployee(idEmployee).then(() => {
-        this.loadEmployees();
-      }, error => {
-  
-      });
+      if (result) {
+        this._employeeService.deleteEmployee(idEmployee).then(() => {
+          this.loadEmployees();
+          this.snackbar.open('The employee was successfully removed', '', {
+            panelClass: ['success'],
+            ...this.snackbarConfig
+          });
+        }, error => {
+          this.snackbar.open('An error occurred', '', {
+            panelClass: ['error'],
+            ...this.snackbarConfig
+          });
+        });
+      }
     });
-
   }
 
-  add() {
+  addEmployee() {
     const employee: Employee = {
       fullName: 'Marta Perez',
       email: 'mperez@gmail.com',

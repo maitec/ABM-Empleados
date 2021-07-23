@@ -7,8 +7,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./confirmation-message.component.css']
 })
 export class ConfirmationMessageComponent implements OnInit {
-  message: string;
-  btn = 'Ok';
+  public message: string;
+  public confirmDialog = true;
+
   constructor(
     public dialogRef: MatDialogRef<ConfirmationMessageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

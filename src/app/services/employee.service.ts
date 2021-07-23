@@ -22,11 +22,11 @@ export class EmployeeService {
   ) { }
 
   public getEmployees(): Observable<any> {
-    return this.firestore.collection('employee', ref => ref.orderBy('admissionDate', 'asc')).snapshotChanges();
+    return this.firestore.collection('employees', ref => ref.orderBy('admissionDate', 'asc')).snapshotChanges();
   }
 
   public saveEmployee(employee: Employee): Promise<any>{
-    return this.firestore.collection('employee').add(employee);
+    return this.firestore.collection('employees').add(employee);
   }
 
   public deleteEmployee(id: string): Promise<any>{
