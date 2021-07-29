@@ -1,5 +1,5 @@
 //Modules
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +14,7 @@ import { AddEditEmployeeComponent } from './components/add-edit-employee/add-edi
 import { ListEmployeeComponent } from './components/list-employee/list-employee.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ConfirmationMessageComponent } from './components/shared/confirmation-message/confirmation-message.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,10 +30,11 @@ import { ConfirmationMessageComponent } from './components/shared/confirmation-m
     BrowserAnimationsModule,
     AngularMaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule
   ],
   entryComponents: [ConfirmationMessageComponent],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -50,7 +50,6 @@ export class ListEmployeeComponent implements OnInit {
           admissionDate: admissionDate,
           seniority: element.payload.doc.data().seniority,
           position: element.payload.doc.data().position
-          // ...element.payload.doc.data()
         });
       });
       this.dataSource = new MatTableDataSource(this.listEmployee);
@@ -88,15 +87,9 @@ export class ListEmployeeComponent implements OnInit {
     });
   }
 
-  addEmployee() {
-    const employee: Employee = {
-      fullName: 'Marta Perez',
-      email: 'mperez@gmail.com',
-      admissionDate: new Date(),
-      seniority: 'Ssr',
-      position: 'Developer'
-    };
-    this._employeeService.saveEmployee(employee);
+  public editEmployee(employee: Employee){
+    this._employeeService.employee = employee;
   }
+
 
 }

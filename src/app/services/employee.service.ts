@@ -7,15 +7,8 @@ import { Employee } from '../models/Employee.model';
   providedIn: 'root'
 })
 export class EmployeeService {
-  public listEmployee: Employee[] = [
-    { 
-      fullName: 'Lucas Martinez',
-      email: 'lmartinez@gmail.com',
-      admissionDate: new Date(),
-      seniority: 'Junior',
-      position: 'Developer'
-    }
-  ];
+
+  public employee: Employee;
 
   constructor(
     private firestore: AngularFirestore
@@ -25,8 +18,16 @@ export class EmployeeService {
     return this.firestore.collection('employees', ref => ref.orderBy('admissionDate', 'asc')).snapshotChanges();
   }
 
+  public getPositions(): Observable<any> {
+    return this.firestore.collection('positions', ref => ref.orderBy('name', 'asc')).snapshotChanges();
+  }
+
   public saveEmployee(employee: Employee): Promise<any>{
     return this.firestore.collection('employees').add(employee);
+  }
+
+  public editEmployee(employee: Employee): Promise<any> {
+    return this.firestore.collection('employees').doc(employee.id).update(employee);
   }
 
   public deleteEmployee(id: string): Promise<any>{

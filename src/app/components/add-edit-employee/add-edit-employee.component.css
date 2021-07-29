@@ -1,0 +1,15 @@
+.form-field-container {
+    width: 100%;
+}
+
+.btn-size {
+    width: 75%;
+}
+
+.error-msg-container {
+    margin-top: -20px;
+}
+
+.form-container {
+    margin-top: 50px;
+}
